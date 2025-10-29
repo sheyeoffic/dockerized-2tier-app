@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheye's 2-Tier Web App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 40px;
+      background-color: #f3f4f6;
+    }
+    h1 {
+      color: #1f2937;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      width: 400px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    pre {
+      text-align: left;
+      background: #f9fafb;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 Sheye's Dockerized 2-Tier Web App</h1>
+
+  <div class="card">
+    <h3>Backend API Test</h3>
+    <button onclick="getInfo()">Get API Info</button>
+    <button onclick="getQuote()">Get Quote</button>
+    <button onclick="getHealth()">Health Check</button>
+
+    <pre id="output">Click a button to fetch data...</pre>
+  </div>
+
+  <script>
+    const backendUrl = "http://localhost:5000";
+
+    async function getInfo() {
+      const res = await fetch(`${backendUrl}/api/info`);
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function getQuote() {
+      const res = await fetch(`${backendUrl}/api/quote`);
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function getHealth() {
+      const res = await fetch(`${backendUrl}/api/health`);
+      const data = await res.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
