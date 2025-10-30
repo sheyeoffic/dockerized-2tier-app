@@ -1,157 +1,145 @@
-# Dockerized 2-Tier Web Application  
-### Author: Emmanuel Sheye
+# Dockerized 2-Tier Web Application with CI/CD
 
----
-
-## Overview
-This project demonstrates a **Dockerized 2-Tier Web Application** consisting of:
-- A **Flask Backend API** serving dynamic data.
-- A **Frontend Web App** built with HTML, CSS, and JavaScript served via Nginx.
-- A **docker-compose.yml** configuration that runs both containers together seamlessly.
-
-The project was developed as part of the **Azure Cloud Bootcamp**, to showcase containerization, multi-tier architecture, and deployment readiness.
+This project is a **Dockerized 2-tier web application** (Backend + Frontend) integrated with **GitHub Actions CI/CD** for automated build, push, and deployment to an **Azure Linux Virtual Machine**.
 
 ---
 
 ## Project Structure
-
 dockerized-2tier-app/
+│
 ├── backend/
 │ ├── app.py
-│ ├── Dockerfile
 │ ├── requirements.txt
+│ └── Dockerfile
+│
 ├── frontend/
 │ ├── index.html
-│ ├── Dockerfile
+│ ├── script.js
+│ └── Dockerfile
+│
+├── .github/
+│ └── workflows/
+│ └── ci-cd.yml
+│
+├── screenshots/
+│ ├── Backend_Build.jpg
+│ ├── Frontend_Build.jpg
+│ ├── Docker_Images.jpg
+│ ├── DockerHub_Repo.jpg
+│ ├── Containers_running.jpg
+│ ├── Frontend_Connecting_to_Backend.jpg
+│ ├── VM_Public_IP_Access.jpg
+│ └── github_actions_success.jpg
+│
 ├── docker-compose.yml
 └── README.md
 
 
 ---
 
-## Backend Service (Flask API)
-The backend is a Python Flask API with three endpoints:
-| Endpoint | Description |
-|-----------|--------------|
-| `/api/info` | Returns basic app information |
-| `/api/quote` | Returns a random quote |
-| `/api/health` | Returns a simple health status |
+##  Setup and Run Locally
 
-**Run locally:**
+### 1️⃣ Clone the repository
 ```bash
-cd backend
-python app.py
+git clone https://github.com/sheyeoffic/dockerized-2tier-app.git
+cd dockerized-2tier-app
 
-# Frontend Service
+Build and run using Docker Compose
 
-The frontend is a simple HTML/JS interface that fetches data from the Flask backend and displays it in a user-friendly format.
-
-Run locally:
-Open frontend/index.html in your browser or serve it via Nginx.
-
-Docker Setup
-Build Images
-
-docker build -t backend ./backend
-docker build -t frontend ./frontend
-
-Run with Docker Compose
 docker compose up --build
 
-Access the app:
+This will:
 
-Backend → http://localhost:5000/api/info
+Build both backend and frontend containers
+
+Run them together on:
+
+Backend → http://localhost:5000
 
 Frontend → http://localhost:8080
 
-Screenshots
+ Backend Overview
 
-Screenshots demonstrating successful build, Docker Compose run, and application behavior are included in the project submission folder.
+Built with Python (Flask)
 
-Docker Hub Repositories
+Exposes simple APIs:
 
-The Docker images for this 2-Tier Web Application are publicly available on Docker Hub.
+/api/info → Project info
 
-Backend (Flask API)
-emmanuelsheye/backend:v1
+/api/quote → Random quote
 
-Frontend (Nginx + HTML)
-emmanuelsheye/frontend:v1
+/api/health → Status check
 
-Pull and Run the Backend Images
+Dockerized with a lightweight python:3.9-slim base image.
 
-docker pull emmanuelsheye/backend:v1
-docker run -p 5000:5000 emmanuelsheye/backend:v1
+ Frontend Overview
 
-Visit:
+Simple HTML + JavaScript frontend
 
-http://localhost:5000/api/info
+Fetches data from the backend APIs
 
-http://localhost:5000/api/quote
+Runs on Nginx web server in a separate container
 
-http://localhost:5000/api/health
+ CI/CD Workflow Description
 
-Frontend
+This project uses a GitHub Actions CI/CD pipeline that automatically builds, pushes, and deploys the Dockerized app.
 
-Pull and run the frontend image:
+Whenever changes are pushed to the main branch:
 
-docker pull emmanuelsheye/frontend:v1
-docker run -p 8080:80 emmanuelsheye/frontend:v1
+ The workflow builds Docker images for both backend and frontend.
 
-Open your browser:
-http://localhost:8080
+ Pushes them to Docker Hub (emmanuelsheye/backend and emmanuelsheye/frontend).
 
-## 🐳 Docker Hub Repositories
+ SSHs into the Azure VM.
 
-The following Docker images were built and pushed as part of this project:
+ Pulls and redeploys the updated containers automatically.
 
-### 🔹 Backend
-- **Repository:** [emmanuelsheye/backend](https://hub.docker.com/r/emmanuelsheye/backend)
-- **Tags:**  
-  - `latest` — latest local build  
-  - `v1` — version submitted for review  
-- **Pull Command:**
-  ```bash
-  docker pull emmanuelsheye/backend:v1
+This ensures continuous delivery and fast updates with minimal manual work.
 
-Frontend
+ Screenshots
+Description	Screenshot
+Backend Build	
 
-Repository: emmanuelsheye/frontend
+Frontend Build	
 
-Tags:
+Docker Images List	
 
-latest — latest local build
+Docker Hub Repository	
 
-v1 — version submitted for review
+Containers Running	
 
-Pull Command: docker pull emmanuelsheye/frontend:v1
+Frontend Connected to Backend	
 
-## Deployment Instructions
-...
+Azure VM Public IP Access	
 
-##  CI/CD Workflow
+GitHub Actions CI/CD Success	
 
-This project uses a GitHub Actions CI/CD pipeline to automate the build and deployment process. Whenever a change is pushed to the main branch, the workflow automatically builds the Docker images for both the backend and frontend, tags them with version numbers, and pushes them to Docker Hub. It then securely connects to the Azure Linux VM via SSH to pull and run the updated containers. This ensures continuous delivery of the latest version of the application with minimal manual intervention.
+ Author
 
-## Author
-Emmanuel Sheye
+Emmanuel Faniseyi
+GitHub: @sheyeoffic
+
+Docker Hub: emmanuelsheye
+
+ Final Notes
+
+This project fulfills all requirements for the Azure Bootcamp Capstone Project.
+
+It demonstrates containerization, orchestration, cloud deployment, and CI/CD automation.
+
+The entire app can be redeployed with a single commit to main.
 
 
-# Summary
+---
 
-This project demonstrates containerization of a 2-tier web app using Docker.
-It highlights the use of:
+### After Copying:
+1. Replace your current `README.md` content with the above.  
+2. Save it.  
+3. Then run in your terminal:
+```bash
+git add README.md
+git commit -m "Updated README with structure and screenshots"
+git push origin main
 
-Flask backend API
 
-Nginx web server frontend
 
-Docker Compose for orchestration
-
-Docker Hub for image hosting
-
-Author
-
-Emmanuel Sheye
-Azure Cloud Bootcamp Participant
-Dockerized 2-Tier Web Application Project
