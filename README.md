@@ -96,23 +96,19 @@ Whenever changes are pushed to the main branch:
 
 This ensures continuous delivery and fast updates with minimal manual work.
 
- Screenshots
-Description	Screenshot
-Backend Build	
+ ## Screenshots
 
-Frontend Build	
-
-Docker Images List	
-
-Docker Hub Repository	
-
-Containers Running	
-
-Frontend Connected to Backend	
-
-Azure VM Public IP Access	
-
-GitHub Actions CI/CD Success	
+| Description | Screenshot |
+|--------------|-------------|
+| Backend Build | ![Backend Build](screenshots/Backend_Build.jpg) |
+| Frontend Build | ![Frontend Build](screenshots/Frontend_Build.jpg) |
+| Docker Images List | ![Docker Images](screenshots/Docker_Images.jpg) |
+| Docker Hub Repository | ![Docker Hub Repo](screenshots/DockerHub_Repo.jpg) |
+| Containers Running | ![Containers Running](screenshots/Containers_running.jpg) |
+| Frontend Connected to Backend | ![Frontend Connecting](screenshots/Frontend_Connecting_to_Backend.jpg) |
+| Azure VM Public IP Access | ![VM Public IP](screenshots/VM_Public_IP_Access.jpg) |
+| GitHub Actions CI/CD Success | ![GitHub Actions Success](screenshots/github_actions_success.jpg) |
+	
 
  Author
 
